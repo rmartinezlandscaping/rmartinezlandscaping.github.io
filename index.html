@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>R & Martinez Landscaping LLC | Professional Landscaping Services</title>
+    <meta name="description" content="R & Martinez Landscaping LLC - Commercial & residential Professional landscaping, lawn care, and outdoor services. Contact us today for a free quote.">
+
+    <style>
+        /* ===== RESET ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #ffffff;
+        }
+
+        /* ===== NAVIGATION ===== */
+        nav {
+            background: #1b4332;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.800);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5rem 1.2rem;
+            border-radius: 6px;
+            transition: background 0.3s;
+            font-size: 1rem;
+        }
+
+        nav a:hover {
+            background: #2d6a4f;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            position: relative;
+            height: 90vh;
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 2rem;
+
+            /* BACKGROUND IMAGE - replace hero.jpg with your image */
+            background-image: url('images/hero5.jpg');
+            background-size: contain;
+            background-position: center;
+            background-repeat: auto;
+            background-attachment: fixed;
+        }
+
+        /* DARK OVERLAY so text is readable */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        .hero-btn {
+            display: inline-block;
+            background: #41b07e;
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .hero-btn:hover {
+            background: #aae6cb;
+            transform: translateY(-3px);
+        }
+
+        /* ===== CONTAINER ===== */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 4rem 1.5rem;
+        }
+
+        section {
+            margin-bottom: 4rem;
+        }
+
+        h2 {
+            color: #010f09;
+            font-size: 2rem;
+            border-bottom: 3px solid #52b788;
+            padding-bottom: 0.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        /* ===== SERVICES GRID ===== */
+        .services-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .service-card {
+            background: #98e3ba;
+            padding: 1.8rem;
+            border-radius: 12px;
+            border-left: 5px solid #52b788;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-card h3 {
+            color: #15553a;
+            margin-bottom: 0.6rem;
+            font-size: 1.2rem;
+        }
+
+        .service-card p {
+            color: #555;
+            font-size: 0.95rem;
+        }
+        /* ===== SERVICE MODAL ===== */
+.service-card {
+    cursor: pointer;
+}
+
+.service-card::after {
+    content: 'Click to see more →';
+    display: block;
+    margin-top: 0.8rem;
+    color: #52b788;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.service-modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    overflow-y: auto;
+}
+
+.service-modal.active {
+    display: flex;
+}
+
+.modal-content {
+    background: #d4e3f2;
+    max-width: 700px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    border-radius: 16px;
+    padding: 2rem;
+    position: relative;
+}
+
+.modal-content img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+}
+
+.modal-content h3 {
+    color: #1b4332;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.modal-content p {
+    color: #555;
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 2rem;
+    color: #333;
+    cursor: pointer;
+    background: rgb(10, 25, 20);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    z-index: 1;
+}
+
+.modal-close:hover {
+    background: #f8f9fa;
+    color: #52b788;
+}
+
+@media (max-width: 600px) {
+    .modal-content { padding: 1.5rem; }
+    .modal-content h3 { font-size: 1.4rem; }
+    .modal-content img { height: 200px; }
+}
+
+        /* ===== CONTACT INFO ===== */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .contact-card {
+            background: #f8f9fa;
+            padding: 1.8rem;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .contact-card .icon {
+            font-size: 2.5rem;
+            display: block;
+            margin-bottom: 0.8rem;
+        }
+
+        .contact-card h3 {
+            color: #1b4332;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-card p,
+        .contact-card a {
+            color: #555;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+        .contact-card a:hover {
+            color: #52b788;
+        }
+
+        .messenger-btn {
+            display: inline-block;
+            background: #25D366;
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 2rem;
+            transition: background 0.3s;
+        }
+
+        .messenger-btn:hover {
+            background: #128C7E;
+        }
+
+        /* ===== OUR WORK / GALLERY ===== */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            max-width: 500px;
+            margin: 0 auto;
+            
+        }
+
+        .gallery-grid img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 80px;
+            transition: transform 0.0s;
+        }
+
+        .gallery-grid img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Placeholder boxes if you don't have images yet */
+        .gallery-placeholder {
+            width: 100%;
+            height: 220px;
+            background: #e9ecef;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            font-size: 0.9rem;
+            border: 2px dashed #adb5bd;
+        }
+
+        /* ===== SOCIAL MEDIA ===== */
+        .social-grid {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .social-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: #1b4332;
+            font-weight: 700;
+            font-size: 1.1rem;
+            padding: 2rem 2.5rem;
+            border-radius: 16px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            min-width: 160px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .social-link:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+        }
+
+        .social-link .icon {
+            font-size: 3rem;
+            margin-bottom: 0.8rem;      
+            line-height: 1;
+        }
+
+        .social-link.facebook {
+            background: linear-gradient(135deg, #1877f2, #0a5dc2);
+        }
+
+        .social-link.tiktok {
+            background: linear-gradient(135deg, #000000, #25f4ee);
+        }   
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: #1b4332;
+            color: white;
+            text-align: center;
+            padding: 2rem 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        /* ===== MOBILE ===== */
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 2rem; }
+            .hero p { font-size: 1rem; }
+            nav a { padding: 0.4rem 0.8rem; font-size: 0.9rem; }
+            h2 { font-size: 1.5rem; }
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- ===== NAVIGATION ===== -->
+    <nav>
+        <ul>
+            <li><a href="#start">Start</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#our-work">Our Work</a></li>
+            <li><a href="#social-media">Social Media</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- ===== HERO / START ===== -->
+    <section id="start" class="hero">
+        <div class="hero-content">
+            <h1>Welcome to R & Martinez Landscaping LLC</h1>
+            <p>Commercial & residential Professional landscaping services you can trust. Quality work, fair prices, and beautiful results.</p>
+            <a href="#contact" class="hero-btn">Get a Free Quote</a>
+        </div>
+    </section>
+
+    <div class="container">
+
+        <!-- ===== SERVICES ===== -->
+       
+
+        <section id="services">
+            <h2>Our Services</h2>
+            <div class="services-grid">
+
+                <div class="service-card"
+                onclick="abrirModal('lawn-mowing')">
+                    <h3>1. Lawn Mowing</h3>
+                    <p>Regular mowing, edging, and trimming to keep your lawn neat and healthy.</p>
+                </div>
+
+                <div class="service-card"
+                onclick="abrirModal('landscaping-design')">
+                    <h3>2. Landscaping Design</h3>
+                    <p>Custom landscape design tailored to your space, style, and budget.</p>
+                </div>
+
+                <div class="service-card"
+                onclick="abrirModal('tree-bush-trimming')">
+                    <h3>3. Tree & Bush Trimming</h3>
+                    <p>Professional pruning and shaping of trees, shrubs, and hedges.</p>
+                </div>
+
+                <div class="service-card"
+                onclick="abrirModal('sod-installation')">
+                    <h3>4. Sod Installation</h3>
+                    <p>Fresh sod installation for a lush, green lawn in no time.</p>
+                </div>
+
+                <div class="service-card"
+                onclick="abrirModal('mulching-flower-beds')">
+                    <h3>5. Mulching & Flower Beds</h3>
+                    <p>Mulch installation and flower bed maintenance for a clean look.</p>
+                </div>
+
+                <div class="service-card"
+                onclick="abrirModal('leaf-removal')">
+                    <h3>6. Leaf Removal</h3>
+                    <p>Seasonal leaf cleanup to keep your yard tidy all year round.</p>
+                </div>
+
+                <div class="service-card"
+                onclick="abrirModal('hardscapings')">
+                    <h3>7. Hardscapings</h3>
+                    <p>Design and installation of outdoor living spaces and structures.</p>
+                </div>
+
+                <div class="service-card"
+                onclick="abrirModal('yard-cleanup')">
+                    <h3>8. Yard Cleanup</h3>
+                    <p>Full yard cleanup, debris removal, and general maintenance.</p>
+                </div>
+
+                <div class="service-card"
+                onclick="abrirModal('snow-removal')">
+                    <h3>9. Snow Removal</h3>
+                    <p>Efficient snow plowing and removal services for residential and commercial properties.</p>
+
+            </div>
+        </section>
+
+        <!-- ===== OUR WORK ===== -->
+        <section id="our-work">
+            <h2>Our Work</h2>
+            <div class="gallery-grid">
+                <!-- Replace these placeholders with real images -->
+                <img src="images/hero22.jpg.JPG" alt="Our Work 1" class="gallery-placeholder">
+                <img src="images/hero15.jpg" alt="Our Work 2" class="gallery-placeholder">
+                <img src="images/hero23.jpg.JPG" alt="Our Work 3" class="gallery-placeholder">
+                <img src="images/hero12.jpg" alt="Our Work 4" class="gallery-placeholder">
+                <img src="images/hero3.jpg" alt="Our Work 5" class="gallery-placeholder">
+                <img src="images/hero21.jpg" alt="Our Work 6" class="gallery-placeholder">
+                <img src="images/hero7.jpg" alt="Our Work 7" class="gallery-placeholder">
+                <img src="images/hero14.jpg" alt="Our Work 8" class="gallery-placeholder">
+                <img src="images/hero10.jpg" alt="Our Work 9" class="gallery-placeholder">
+                <img src="images/hero11.jpg" alt="Our Work 10" class="gallery-placeholder">
+                <img src="images/hero8.jpg" alt="Our Work 11" class="gallery-placeholder">
+                <img src="images/hero17.jpg" alt="Our Work 12" class="gallery-placeholder">
+            </div>
+        </section>
+
+        <!-- ===== SOCIAL MEDIA ===== -->
+        <section id="social-media">
+            <h2>Follow Us</h2>
+            <div class="social-grid">
+
+                <a href="https://www.facebook.com/profile.php?id=100064954150620" target="_blank" class="social-link">
+                    <span class="icon">📘</span>
+                    Facebook
+                </a>
+
+                <a href="https://www.tiktok.com/@rmartinezlandscap?is_from_webapp=1&sender_device=pc" target="_blank" class="social-link">
+                    <span class="icon">🎵</span>
+                    TikTok
+                </a>
+
+            </div>
+        </section>
+
+        <!-- ===== CONTACT ===== -->
+        <section id="contact">
+            <h2>Contact Us</h2>
+            <div class="contact-grid">
+
+                <div class="contact-card">
+                    <span class="icon">📞</span>
+                    <h3>Phone</h3>
+                    <p><a href="tel:+12627458002">+1 (262) 745-8002</a></p>
+                </div>
+
+                <div class="contact-card">
+                    <span class="icon">✉️</span>
+                    <h3>Email</h3>
+                    <p><a href="mailto:rufinomlandscapingservice@gmail.com">rufinomlandscapingservice@gmail.com</a></p>
+                </div>
+
+                <div class="contact-card">
+                    <span class="icon">🕐</span>
+                    <h3>Hours</h3>
+                    <p>Mon – Sat: 7:00 AM – 6:00 PM<br>Sunday: Closed</p>
+                </div>
+
+                <div class="contact-card">
+                    <span class="icon">📍</span>
+                    <h3>Service Area</h3>
+                    <p><a href="https://www.google.com/maps/d/edit?mid=1pSgDLhysKGKuojezHnG3pq_J9qjPJ5g&usp=sharing" target="_blank">View Our Service Area</a></p>
+                </div>
+
+            </div>
+
+            
+        </section>
+
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <p><strong>R & Martinez Landscaping LLC</strong></p>
+        <p>&copy; 2026 R & Martinez Landscaping LLC. All rights reserved.</p>
+    </footer>
+     <!-- SERVICE MODAL -->
+    <div class="service-modal" id="serviceModal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="cerrarModal()">&times;</span>
+            <img id="modal-img" src="" alt="Service">
+            <h3 id="modal-title"></h3>
+            <p id="modal-description"></p>
+            <p id="modal-description2"></p>
+        </div>
+    </div>
+<script>
+    const services = {
+        "lawn-mowing": {
+            title: "Lawn Mowing",
+            description: "Regular mowing, edging, and trimming to keep your lawn neat and healthy.",
+            description2: "We provide professional lawn mowing services to ensure your yard looks its best all season long.",
+            img: "images/hero5.jpg"
+        },
+        "landscaping-design": {
+            title: "Landscaping Design",
+            description: "Custom landscape design tailored to your space, style, and budget.",
+            description2: "Our team creates beautiful and functional outdoor spaces that enhance your property.",
+            img: "images/hero4.jpg"
+        },
+        "tree-bush-trimming": {
+            title: "Tree & Bush Trimming",
+            description: "Professional pruning and shaping of trees, shrubs, and hedges.",
+            description2: "Keep your trees and bushes healthy and looking great with our expert trimming services.",
+            img: "images/hero7.jpg"
+        },
+        "sod-installation": {
+            title: "Sod Installation",
+            description: "Fresh sod installation for a lush, green lawn in no time.",
+            description2: "Transform your yard quickly with our high-quality sod installation services.",
+            img: "images/hero11.jpg"
+        },
+        "mulching-flower-beds": {
+            title: "Mulching & Flower Beds",
+            description: "Mulch installation and flower bed maintenance for a clean look.",
+            description2: "Enhance the beauty of your garden with our mulching and flower bed services.",
+            img: "images/hero30.jpg"
+        },
+        "leaf-removal": {
+            title: "Leaf Removal",
+            description: "Seasonal leaf cleanup to keep your yard tidy all year round.",
+            description2: "We offer efficient leaf removal services to maintain a clean and safe yard.",
+            img: "images/hero34.jpg"
+        },
+        "hardscapings": {
+            title: "Hardscapings",
+            description: "retaining walls & landscapes steps.",
+            description2: "we design and build durable retaining walls and beautiful outdoor steps to enhanche your property's functionality appearance and value.",
+            img: "images/hero20.jpg"
+        },
+        "yard-cleanup": {
+            title: "Yard Cleanup",
+            description: "Full yard cleanup, debris removal, and general maintenance.",
+            description2: "Let us handle the hard work with our comprehensive yard cleanup services.",
+            img: "images/hero5.jpg"
+            
+        },
+        "snow-removal": {
+            title: "Snow Removal",
+            description: "Efficient snow plowing and removal services for residential and commercial properties.",
+            description2: "Keep your driveways and walkways clear and safe during the winter months with our snow removal services.",
+            img: "images/hero39.jpg"
+        }
+    };
+
+    function abrirModal(id) {
+        const servicio = services[id];
+        if (!servicio) {
+            console.error("No se encontró el servicio:", id);
+            return;
+        }
+
+        document.getElementById('modal-img').src = servicio.img;
+        document.getElementById('modal-title').textContent = servicio.title;
+        document.getElementById('modal-description').textContent = servicio.description;
+        document.getElementById('modal-description2').textContent = servicio.description2;
+
+        document.getElementById('serviceModal').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function cerrarModal() {
+        document.getElementById('serviceModal').classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') cerrarModal();
+    });
+
+    document.getElementById('serviceModal').addEventListener('click', function(e) {
+        if (e.target === this) cerrarModal();
+    });
+</script>
+    
+
+</body>
+</html>
